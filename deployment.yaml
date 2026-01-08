@@ -1,38 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phishing-detection-deployment
+  name: phishing-app
   namespace: phishing-detection
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: phishing-detection
+      app: phishing-app
   template:
     metadata:
       labels:
-        app: phishing-detection
+        app: phishing-app
     spec:
       containers:
-        - name: phishing-detection
-          image: anitalluri00/phishing-detection-ps:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 5000
-          envFrom:
-            - configMapRef:
-                name: phishing-config
-          volumeMounts:
-            - name: phishing-storage
-              mountPath: /app/data
-          resources:
-            requests:
-              cpu: "250m"
-              memory: "256Mi"
-            limits:
-              cpu: "500m"
-              memory: "512Mi"
+      - name: phishing-container
+        image: anitalluri00/phishing-detection-ps:latest
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: phishing-config
+        volumeMounts:
+        - name: app-storage
+          mountPath: /app/data
       volumes:
-        - name: phishing-storage
-          persistentVolumeClaim:
-            claimName: phishing-pvc
+      - name: app-storage
+        persistentVolumeClaim:
+          claimName: phishing-pvc
