@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: phishing-service
+  namespace: phishing-detection
+spec:
+  type: LoadBalancer
+  selector:
+    app: phishing-detection
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
