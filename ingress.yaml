@@ -4,16 +4,16 @@ metadata:
   name: phishing-ingress
   namespace: phishing-detection
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: phishing.example.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: phishing-service
-                port:
-                  number: 80
+  - host: phishing.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: phishing-service
+            port:
+              number: 80
