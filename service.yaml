@@ -6,7 +6,8 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: phishing-app
+    app: phishing
   ports:
-  - port: 80
-    targetPort: 5000
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
