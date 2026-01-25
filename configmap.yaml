@@ -5,4 +5,4 @@ metadata:
   namespace: phishing-detection
 data:
   APP_ENV: "production"
-  LOG_LEVEL: "info"
+  APP_PORT: "5000"
