@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: phishing-daemon
+  name: phishing-daemonset
   namespace: phishing-detection
 spec:
   selector:
@@ -13,6 +13,6 @@ spec:
         app: phishing-daemon
     spec:
       containers:
-      - name: node-monitor
-        image: busybox
-        command: ["sh", "-c", "while true; do echo node alive; sleep 60; done"]
+        - name: phishing-agent
+          image: busybox
+          command: ["sh", "-c", "while true; do echo phishing-agent running; sleep 60; done"]
